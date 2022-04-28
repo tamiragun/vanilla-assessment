@@ -2,6 +2,7 @@ import React from "react";
 
 // Declaring type of props - see "Typing Component Props" for more examples
 export type CardInfo = {
+  id: string;
   topic: string;
   featuredMedia: string;
   title: string;
@@ -14,6 +15,7 @@ export type CardInfo = {
 
 // you can choose annotate the return type so an error is raised if you accidentally return some other type
 export const BlogCard = ({
+  id,
   topic,
   featuredMedia,
   title,
@@ -24,6 +26,7 @@ export const BlogCard = ({
   category,
 }: CardInfo): JSX.Element => (
   <div>
+    <div>{id}</div>
     <div>{topic}</div>
     <div>{featuredMedia}</div>
     <div>{title}</div>
