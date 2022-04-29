@@ -1,0 +1,16 @@
+@import "vanilla-framework";
+@include vanilla;
+
+.blog-card {
+  height: 100%;
+  border-top: solid 3px #a87ca0;
+}
+
+.blog-card-content {
+  margin-top: 1em;
+}
+
+.divider {
+  border-top: 1px dotted white;
+  height: 0;
+}

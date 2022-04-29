@@ -25,7 +25,7 @@ function App() {
   form of an unordered list of blog card components*/
   const blogCards = blogData.map((card) => {
     return (
-      <li key={card.id}>
+      <li key={card.id} className="col-4">
         {/*Using spread syntax to prevent Typescript error, courtesy of 
         https://stackoverflow.com/questions/59969756/not-assignable-to-type-intrinsicattributes-intrinsicclassattributes-react-js*/}
         <BlogCard {...card}></BlogCard>
@@ -35,12 +35,12 @@ function App() {
 
   /* Render the component, along with error handling and placeholders */
   return (
-    <div>
-      <div>
+    <div className="App">
+      <div className="p-strip">
         {isError ? (
           <div>There was an error fetching the blog data.</div>
         ) : blogData ? (
-          <ul>{blogCards}</ul>
+          <ul className="row">{blogCards}</ul>
         ) : (
           <div>Fetching the blog data...</div>
         )}
@@ -79,7 +79,7 @@ const createCards = (listOfJsonCards: Array<any>): CardInfo[] => {
       id: card.id.toString(),
       // Ensuring there is a value in place before trying to access its nested properties
       topic: card._embedded["wp:term"][2][0]
-        ? card._embedded["wp:term"][2][0].name
+        ? card._embedded["wp:term"][2][0].name.toUpperCase()
         : undefined,
       featuredMedia: card.featured_media,
       title: card.title.rendered,
