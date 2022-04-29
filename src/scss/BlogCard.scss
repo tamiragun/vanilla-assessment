@@ -1,16 +1,30 @@
 @import "vanilla-framework";
 @include vanilla;
 
+/* Some padding and a dotted divider line for in between the card elements */
+@mixin dotted-divider {
+  border-top: 1px dotted #d9d9d9;
+  padding-top: 1em;
+}
+
+/* Organise the card as a flex container so that the footer can 
+be pushed to the bottom. Add shadow. */
 .blog-card {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   border-top: solid 3px #a87ca0;
+  box-shadow: 0 0 5px lightgray;
 }
 
+/* Push the footer to the bottom by assigning flex-grow 1 to the 
+content flex element. Add divider too. */
 .blog-card-content {
-  margin-top: 1em;
+  @include dotted-divider;
+  flex-grow: 1;
 }
 
-.divider {
-  border-top: 1px dotted white;
-  height: 0;
+/* Add divider to footer */
+.blog-card-footer {
+  @include dotted-divider;
 }

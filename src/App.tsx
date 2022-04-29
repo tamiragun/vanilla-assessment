@@ -33,7 +33,7 @@ function App() {
     );
   });
 
-  /* Render the component, along with error handling and placeholders */
+  /* Render the component in grid form, along with error handling and placeholders */
   return (
     <div className="App">
       <div className="p-strip">
@@ -92,7 +92,12 @@ const createCards = (listOfJsonCards: Array<any>): CardInfo[] => {
         card._embedded && card._embedded.author[0]
           ? card._embedded.author[0].link
           : undefined,
-      date: card.date,
+      // Covert the string to a formatted date
+      date: new Date(card.date).toLocaleString("en-UK", {
+        day: "numeric",
+        year: "numeric",
+        month: "long",
+      }),
       category:
         card._embedded &&
         card._embedded["wp:term"] &&

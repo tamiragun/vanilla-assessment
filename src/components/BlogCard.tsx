@@ -1,6 +1,6 @@
 import "../css/BlogCard.css";
 
-// Declaring type of props - see "Typing Component Props" for more examples
+// Declare type of props - see "Typing Component Props" for more examples
 export type CardInfo = {
   id: string;
   topic: string;
@@ -13,7 +13,7 @@ export type CardInfo = {
   category: string;
 };
 
-// you can choose annotate the return type so an error is raised if you accidentally return some other type
+// Component that renders a single blog card with the data it received as props
 export const BlogCard = ({
   topic,
   featuredMedia,
@@ -25,21 +25,23 @@ export const BlogCard = ({
   category,
 }: CardInfo): JSX.Element => (
   <div className="p-card blog-card">
-    <h5 className="u-text--muted">{topic}</h5>
-    <hr className="divider" />
-    <div>
-      <div className="p-card__content blog-card-content">
-        <img className="p-card__image" src={featuredMedia} alt=""></img>
-        <h3 className="p-heading--4">
-          <a href={articleUrl}>{title}</a>
-        </h3>
-        <p className="p-heading--6">
-          By <a href={authorUrl}>{author}</a> on {date}
-        </p>
-      </div>
-      <hr className="divider" />
-      <div className="p-card__footer">
-        <div className="p-text">{category}</div>
+    {/*Account for empty topic*/}
+    <h5 className="u-text--muted">{topic ? topic : "OTHER"}</h5>
+    <div className="p-card__content blog-card-content">
+      <img className="p-card__image" src={featuredMedia} alt=""></img>
+      <h3 className="p-heading--4 blog-card-title">
+        <a href={articleUrl}>{title}</a>
+      </h3>
+
+      <p className="p-heading--6">
+        By <a href={authorUrl}>{author}</a> on {date}
+      </p>
+    </div>
+    <div className="p-card__footer blog-card-footer">
+      <div className="p-text">
+        {/*Unsure what the other categories are; would need to map 
+          this out in a separate function outside of this component*/}
+        {category === "Articles" ? "Article" : category}
       </div>
     </div>
   </div>
