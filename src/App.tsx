@@ -6,6 +6,8 @@ function App() {
   const [blogData, setBlogData] = useState<CardInfo[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
 
+  /* Upon first render, the component should fetch the data from the provided API and store 
+  it in state so that it can be rendered*/
   useEffect(() => {
     (async () => {
       const data = await fetchData();
@@ -17,8 +19,10 @@ function App() {
         setBlogData(cards);
       }
     })();
-  }, []);
+  }, [blogData]);
 
+  /* The blog data comes as a list of blog cards, so this creates a JSX element in the 
+  form of an unordered list of blog card components*/
   const blogCards = blogData.map((card) => {
     return (
       <li key={card.id}>
@@ -29,9 +33,10 @@ function App() {
     );
   });
 
+  /* Render the component, along with error handling and placeholders */
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <div>
         {isError ? (
           <div>There was an error fetching the blog data.</div>
         ) : blogData ? (
@@ -39,7 +44,7 @@ function App() {
         ) : (
           <div>Fetching the blog data...</div>
         )}
-      </header>
+      </div>
     </div>
   );
 }
