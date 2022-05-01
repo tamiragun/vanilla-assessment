@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { CardInfo, BlogCard } from "./components/BlogCard";
 import { fetchData } from "./utils/fetchData";
 import { createCards } from "./utils/createCards";
-import "./css/App.css";
 
+// Component that renders the fetched data in a set of CardInfo cards
 const App = (): JSX.Element => {
   const [blogData, setBlogData] = useState<CardInfo[]>([]);
   const [isError, setIsError] = useState<boolean>(false);

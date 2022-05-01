@@ -1,6 +1,6 @@
 import "../css/BlogCard.css";
 
-// Declare type of props - see "Typing Component Props" for more examples
+// Declare custom type of props
 export type CardInfo = {
   id: string;
   topic: string;
