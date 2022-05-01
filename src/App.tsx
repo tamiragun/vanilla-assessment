@@ -4,20 +4,22 @@ import { fetchData } from "./utils/fetchData";
 import { createCards } from "./utils/createCards";
 import "./css/App.css";
 
-function App() {
+const App = (): JSX.Element => {
   const [blogData, setBlogData] = useState<CardInfo[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
+  const url =
+    "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json";
 
   /* Upon first render, the component should fetch the data from the provided API and store 
   it in state so that it can be rendered*/
   useEffect(() => {
     (async () => {
-      const data = await fetchData();
+      const data = await fetchData(url);
       // Check whether the call has returned an error or data
       if (data === "Error") {
         setIsError(true);
       } else {
-        const cards = createCards(data);
+        const cards: CardInfo[] = createCards(data);
         setBlogData(cards);
       }
     })();
@@ -25,7 +27,7 @@ function App() {
 
   /* The blog data comes as a list of blog cards, so this creates a JSX element in the 
   form of an unordered list of blog card components*/
-  const blogCards = blogData.map((card) => {
+  const blogCards: JSX.Element[] = blogData.map((card: CardInfo) => {
     return (
       <li key={card.id} className="col-4 blog-card-container">
         {/*Using spread syntax to prevent Typescript error, courtesy of 
@@ -49,6 +51,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
