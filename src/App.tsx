@@ -27,7 +27,7 @@ function App() {
   form of an unordered list of blog card components*/
   const blogCards = blogData.map((card) => {
     return (
-      <li key={card.id} className="col-4">
+      <li key={card.id} className="col-4 blog-card-container">
         {/*Using spread syntax to prevent Typescript error, courtesy of 
         https://stackoverflow.com/questions/59969756/not-assignable-to-type-intrinsicattributes-intrinsicclassattributes-react-js*/}
         <BlogCard {...card}></BlogCard>

@@ -28,3 +28,8 @@ content flex element. Add divider too. */
 .blog-card-footer {
   @include dotted-divider;
 }
+
+/* Add a margin to the card container so that it is properly spaced in mobile view */
+.blog-card-container {
+  margin-bottom: 1em;
+}
